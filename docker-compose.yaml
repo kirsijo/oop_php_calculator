@@ -1,0 +1,13 @@
+services:
+  web:
+    image: nginx:latest
+    command: [nginx-debug, "-g", "daemon off;"]
+    ports:
+      - "8000:80"
+    volumes:
+      - ./nginx/conf.d/default.conf:/etc/nginx/nginx.conf:ro
+  app:
+    build:
+      dockerfile: ./Dockerfile
+    volumes:
+      - ./app:/var/www/html
